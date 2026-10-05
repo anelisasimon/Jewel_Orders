@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JewelOrders - Atelier Bijuterie</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>JewelOrders</h1>
+    <p>Gestiunea comenzilor personalizate din atelierul de bijuterii.</p>
+    <p class="app-count">3 comenzi, dintre care 2 în lucru</p>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Comandă nouă</h2>
+      <form class="item-form">
+        <label>
+          Piesă bijuterie
+          <input type="text" name="titlu" placeholder="Ex: Cercei cu smarald / Inel de logodnă" required />
+        </label>
+        <label>
+          Metal prețios
+          <select name="eticheta">
+            <option value="aur-galben">Aur Galben 18K</option>
+            <option value="aur-alb">Aur Alb 14K</option>
+            <option value="argint">Argint 925</option>
+            <option value="platina">Platină</option>
+          </select>
+        </label>
+        <button type="submit">Înregistrează comanda</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Comenzi active în atelier</h2>
+      <!-- Când lista e goală: <p class="empty">Nu există nicio comandă în lucru.</p> -->
+      <ul class="item-list">
+        <li class="item-card">
+          <div>
+            <h3>Inel Solitar cu Diamant Solitaire</h3>
+            <span class="badge badge-aur-galben">Aur Galben 18K</span>
+          </div>
+          <span class="status">În atelier</span>
+        </li>
+        <li class="item-card done">
+          <div>
+            <h3>Brățară Tennis cu Pietre Prețioase</h3>
+            <span class="badge badge-aur-alb">Aur Alb 14K</span>
+          </div>
+          <span class="status">Livrată</span>
+        </li>
+        <li class="item-card">
+          <div>
+            <h3>Colier cu Pandantiv Inimă Gravat</h3>
+            <span class="badge badge-argint">Argint 925</span>
+          </div>
+          <span class="status">În atelier</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">Proiect Tehnologii Web - JewelOrders Atelier</footer>
+</body>
+</html>
