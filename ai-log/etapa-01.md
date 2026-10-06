@@ -3,7 +3,7 @@
 - Gemini
 
 ## Conversations
-- Gemini Web Chat (theme selection, data schema definition, responsive HTML/CSS markup)
+- [Gemini Chat - Stage 1](https://share.gemini.google/jysQ9TuX1KNM) (theme selection, data schema definition, responsive HTML/CSS markup)
 
 ## Key requests
 ### 1. Theme Data Model Selection

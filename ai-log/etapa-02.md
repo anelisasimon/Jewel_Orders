@@ -3,7 +3,8 @@
 - Gemini
 
 ## Conversations
-- Gemini Web Chat (implementing data logic with taskuri.js, array immutability, and console validations)
+- ## Conversations
+- [Gemini Chat - Stage 2](https://share.gemini.google/jysQ9TuX1KNM) (implementing data logic with taskuri.js, array immutability, and console validations)
 
 ## Key requests
 ### 1. Pure Array Functions
