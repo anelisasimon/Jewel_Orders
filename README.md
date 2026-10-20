@@ -16,7 +16,13 @@ Sample data used across all stages:
 3. Colier cu Pandantiv Inima Gravat, active, Argint 925
 
 ## How to run
-Open index.html in a browser. No build step, no server.
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Then open the address printed in the terminal (http://localhost:5173).
+
 
 ## AI usage
 | Tool | Used for |
@@ -27,11 +33,13 @@ Details per stage: see the ai-log/ folder.
 
 ## Stage 2: data logic
 Plain JavaScript, no DOM. taskuri.js holds the array and the functions that read and change it. Results are printed in the browser console (F12).
+## Stage 3: Vite and React project
+The app now lives in frontend/, built with Vite. The data from stage 2 moved into the main component; the list is still printed raw.
 
 ## Status
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
-- [ ] Stage 3: Vite and React project
+- [x] Stage 3: Vite and React project
 
 ## Verification checklist
 
@@ -57,3 +65,14 @@ Plain JavaScript, no DOM. taskuri.js holds the array and the functions that read
 | S2-R5 | original array unchanged after add | [taskuri.js#L75](https://github.com/anelisasimon/Jewel_Orders/blob/main/taskuri.js#L75) | console line |
 | S2-R6 | README Stage 2 section + AI log | README.md, [ai-log/etapa-02.md](https://github.com/anelisasimon/Jewel_Orders/blob/main/ai-log/etapa-02.md) | read |
 | S2-R7 | commit "Stage 2" pushed | [Commit Stage 2](https://github.com/anelisasimon/Jewel_Orders/commits/main) | commit history |
+
+### Stage 3 verification checklist
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S3-R1 | npm run dev starts without errors | [frontend/package.json](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/package.json) | npm install, npm run dev |
+| S3-R2 | app name and counter computed from data | [frontend/src/App.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.jsx) | edit data, save |
+| S3-R3 | data from README, not from the example | [frontend/src/App.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.jsx) | compare with README |
+| S3-R4 | stage 1 styles reused | [frontend/src/App.css](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.css) | look at the page |
+| S3-R5 | node_modules ignored, build passes | [frontend/.gitignore](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/.gitignore) | npm run build |
+| S3-R6 | README Stage 3 section + AI log | README.md, [ai-log/etapa-03.md](https://github.com/anelisasimon/Jewel_Orders/blob/main/ai-log/etapa-03.md) | read |
+| S3-R7 | commit "Stage 3" pushed | [Commit Stage 3](https://github.com/anelisasimon/Jewel_Orders/commits/main) | commit history |

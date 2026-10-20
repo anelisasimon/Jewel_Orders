@@ -1,0 +1,118 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #faf7f5;
+  --card: #ffffff;
+  --text: #26211e;
+  --muted: #857972;
+  --accent: #9e7447;
+  --accent-dark: #7a542b;
+  --accent-soft: #f8efe7;
+  --border: #ebdcd0;
+  
+  --tag-aur-galben: #c69228;
+  --tag-aur-alb: #83919e;
+  --tag-argint: #6c7a86;
+  --tag-platina: #8f7499;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.app-header {
+  background: var(--accent);
+  color: #ffffff;
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.app-header h1 {
+  margin: 0 0 8px 0;
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+.app-header p {
+  margin: 4px 0;
+}
+
+.app-count {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+  display: grid;
+  /* Etapa 3: doar panoul cu date; a doua coloană revine în Etapa 7 */
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.panel h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.25rem;
+}
+
+.item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+pre {
+  background: var(--bg);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  font-size: 0.9rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151311;
+    --card: #211d1a;
+    --text: #ede6e1;
+    --muted: #9e938a;
+    --border: #38302a;
+    --accent: #b58654;
+    --accent-dark: #91663b;
+    --accent-soft: #2a231d;
+  }
+}
