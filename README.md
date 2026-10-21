@@ -35,11 +35,17 @@ Details per stage: see the ai-log/ folder.
 Plain JavaScript, no DOM. taskuri.js holds the array and the functions that read and change it. Results are printed in the browser console (F12).
 ## Stage 3: Vite and React project
 The app now lives in frontend/, built with Vite. The data from stage 2 moved into the main component; the list is still printed raw.
+## Stage 4: components
+The list is rendered from the data, through two components:
+JewelList receives the whole array and renders one card per item
+JewelCard receives a single item through props and displays it
 
 ## Status
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: Vite and React project
+- [x] Stage 4: components rendered from data
+- [ ] Stage 5: local state and events
 
 ## Verification checklist
 
@@ -76,3 +82,14 @@ The app now lives in frontend/, built with Vite. The data from stage 2 moved int
 | S3-R5 | node_modules ignored, build passes | [frontend/.gitignore](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/.gitignore) | npm run build |
 | S3-R6 | README Stage 3 section + AI log | README.md, [ai-log/etapa-03.md](https://github.com/anelisasimon/Jewel_Orders/blob/main/ai-log/etapa-03.md) | read |
 | S3-R7 | commit "Stage 3" pushed | [Commit Stage 3](https://github.com/anelisasimon/Jewel_Orders/commits/main) | commit history |
+
+### Stage 4 verification checklist
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S4-R1 | 2+ components in src/components/ | [frontend/src/components/](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/components/) | open folder |
+| S4-R2 | card receives data through props | [frontend/src/components/JewelCard.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/components/JewelCard.jsx) | read |
+| S4-R3 | map + key={id}, no console warnings | [frontend/src/components/JewelList.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/components/JewelList.jsx) | F12, Console |
+| S4-R4 | message for empty list | [frontend/src/components/JewelList.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/components/JewelList.jsx) | set array to [] |
+| S4-R5 | state changes the card look | [frontend/src/components/JewelCard.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/components/JewelCard.jsx) | toggle a done flag |
+| S4-R6 | README Stage 4 section + AI log | README.md, [ai-log/etapa-04.md](https://github.com/anelisasimon/Jewel_Orders/blob/main/ai-log/etapa-04.md) | read |
+| S4-R7 | commit "Stage 4" pushed | [Commit Stage 4](https://github.com/anelisasimon/Jewel_Orders/commits/main) | commit history |
