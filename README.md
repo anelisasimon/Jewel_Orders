@@ -39,13 +39,19 @@ The app now lives in frontend/, built with Vite. The data from stage 2 moved int
 The list is rendered from the data, through two components:
 JewelList receives the whole array and renders one card per item
 JewelCard receives a single item through props and displays it
+## Stage 5: local state and events
+The list lives in React state. Checking and deleting work from the page,
+and the counters in the header follow automatically. A button in the
+header switches between light and dark mode. Changes are lost on refresh,
+which is what stage 6 and stage 10 fix.
 
 ## Status
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: Vite and React project
 - [x] Stage 4: components rendered from data
-- [ ] Stage 5: local state and events
+- [x] Stage 5: local state and events
+- [ ] Stage 6: loading data from a mock API
 
 ## Verification checklist
 
@@ -93,3 +99,16 @@ JewelCard receives a single item through props and displays it
 | S4-R5 | state changes the card look | [frontend/src/components/JewelCard.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/components/JewelCard.jsx) | toggle a done flag |
 | S4-R6 | README Stage 4 section + AI log | README.md, [ai-log/etapa-04.md](https://github.com/anelisasimon/Jewel_Orders/blob/main/ai-log/etapa-04.md) | read |
 | S4-R7 | commit "Stage 4" pushed | [Commit Stage 4](https://github.com/anelisasimon/Jewel_Orders/commits/main) | commit history |
+
+### Stage 5 verification checklist
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S5-R1 | list kept in useState, in App | [frontend/src/App.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.jsx) | read |
+| S5-R2 | toggling changes state and card look | [frontend/src/App.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.jsx), [frontend/src/components/JewelCard.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/components/JewelCard.jsx) | click a checkbox / status button |
+| S5-R3 | delete removes the item | [frontend/src/App.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.jsx), [frontend/src/components/JewelCard.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/components/JewelCard.jsx) | click Delete |
+| S5-R4 | header counter derived, not in state | [frontend/src/App.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.jsx) | toggle, watch header |
+| S5-R5 | immutable updates (no push, splice, assignment) | [frontend/src/App.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.jsx) | read |
+| S5-R6 | light/dark toggle: state + data-theme on html | [frontend/src/App.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.jsx), [frontend/src/App.css](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.css) | click the button, both system themes |
+| S5-R7 | no console warnings; README + AI log | README.md, [ai-log/etapa-05.md](https://github.com/anelisasimon/Jewel_Orders/blob/main/ai-log/etapa-05.md) | F12, Console |
+| S5-R8 | commit "Stage 5" pushed | [Commit Stage 5](https://github.com/anelisasimon/Jewel_Orders/commits/main) | commit history |
+
