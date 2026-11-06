@@ -17,8 +17,12 @@ Sample data used across all stages:
 
 ## How to run
 ```bash
+# terminal 1, http://localhost:3001
 cd frontend
-npm install
+npm run api
+
+# terminal 2, http://localhost:5173
+cd frontend
 npm run dev
 ```
 Then open the address printed in the terminal (http://localhost:5173).
@@ -44,6 +48,9 @@ The list lives in React state. Checking and deleting work from the page,
 and the counters in the header follow automatically. A button in the
 header switches between light and dark mode. Changes are lost on refresh,
 which is what stage 6 and stage 10 fix.
+## Stage 6: data from a mock API
+The list is served by json-server from db.json. The app fetches it on load
+and shows a loading state and an error state.
 
 ## Status
 - [x] Stage 1: static mockup
@@ -51,7 +58,8 @@ which is what stage 6 and stage 10 fix.
 - [x] Stage 3: Vite and React project
 - [x] Stage 4: components rendered from data
 - [x] Stage 5: local state and events
-- [ ] Stage 6: loading data from a mock API
+- [x] Stage 6: loading data from a mock API
+- [ ] Stage 7: form and validation
 
 ## Verification checklist
 
@@ -112,3 +120,13 @@ which is what stage 6 and stage 10 fix.
 | S5-R7 | no console warnings; README + AI log | README.md, [ai-log/etapa-05.md](https://github.com/anelisasimon/Jewel_Orders/blob/main/ai-log/etapa-05.md) | F12, Console |
 | S5-R8 | commit "Stage 5" pushed | [Commit Stage 5](https://github.com/anelisasimon/Jewel_Orders/commits/main) | commit history |
 
+### Stage 6 verification checklist
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S6-R1 | npm run api starts, route shows JSON | [frontend/package.json](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/package.json), [frontend/db.json](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/db.json) | open localhost:3001/comenzi |
+| S6-R2 | data no longer in React code | [frontend/src/App.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.jsx) | read (useState([])) |
+| S6-R3 | loading message while waiting | [frontend/src/App.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.jsx) | --delay 4000 |
+| S6-R4 | error message when API is down | [frontend/src/App.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/App.jsx) | stop npm run api, refresh |
+| S6-R5 | fetch only in api.js, URL from env | [frontend/src/api.js](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/api.js), [frontend/.env.example](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/.env.example) | search for fetch |
+| S6-R6 | README Stage 6 section + AI log | README.md, [ai-log/etapa-06.md](https://github.com/anelisasimon/Jewel_Orders/blob/main/ai-log/etapa-06.md) | read |
+| S6-R7 | commit "Stage 6" pushed | [Commit Stage 6](https://github.com/anelisasimon/Jewel_Orders/commits/main) | commit history |

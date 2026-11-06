@@ -1,4 +1,4 @@
-export const ETAPE = ["Proiectare", "Turnare", "Montare pietre", "Finisare", "Livrată"];
+export const ETAPE = ["Proiectare", "Turnare", "Montare pietre", "Finisare"];
 
 export const ETICHETE_MATERIAL = {
   "aur-galben": "Aur Galben 18K",

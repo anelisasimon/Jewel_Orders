@@ -1,0 +1,10 @@
+{
+  "comenzi": [
+    { "id": 1, "titlu": "Inel Solitar cu Diamant Solitaire", "tip": "inel", "gata": false, "etapa": 2, "prioritate": "aur-galben", "client": "Maria Popescu", "termen": "2026-11-05", "pret": 4500 },
+    { "id": 2, "titlu": "Bratara Tennis cu Pietre Pretioase", "tip": "bratara", "gata": true, "etapa": 3, "prioritate": "aur-alb", "client": "Andrei Ionescu", "termen": "2026-10-02", "pret": 3200 },
+    { "id": 3, "titlu": "Colier cu Pandantiv Inima Gravat", "tip": "colier", "gata": false, "etapa": 0, "prioritate": "argint", "client": "Elena Dumitru", "termen": "2026-12-01", "pret": 680 },
+    { "id": 4, "titlu": "Cercei Picatura cu Safir", "tip": "cercei", "gata": false, "etapa": 1, "prioritate": "platina", "client": "Ioana Marinescu", "termen": "2026-10-28", "pret": 4900 },
+    { "id": 5, "titlu": "Verighete cu Gravura Personalizata", "tip": "inel", "gata": true, "etapa": 3, "prioritate": "aur-alb", "client": "Radu Stan", "termen": "2026-10-15", "pret": 3900 },
+    { "id": 6, "titlu": "Lant Fin cu Pandantiv Initiala", "tip": "colier", "gata": false, "etapa": 3, "prioritate": "aur-galben", "client": "Carmen Vasile", "termen": "2026-11-20", "pret": 3600 }
+  ]
+}

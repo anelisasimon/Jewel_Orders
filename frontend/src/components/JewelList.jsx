@@ -1,7 +1,8 @@
 import JewelCard from "./JewelCard.jsx";
 
-export default function JewelList({ taskuri, onAdvance, onEdit, onDelete, mesajGol }) {
-  if (!taskuri || taskuri.length === 0) {
+// Primește lista și funcțiile și le transmite fiecărui card.
+export default function JewelList({ taskuri, onToggle, onAdvance, onEdit, onDelete, mesajGol }) {
+  if (taskuri.length === 0) {
     return (
       <div className="empty">
         <svg viewBox="0 0 64 64" width="54" height="54" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true">
@@ -16,7 +17,7 @@ export default function JewelList({ taskuri, onAdvance, onEdit, onDelete, mesajG
   return (
     <ul className="item-list">
       {taskuri.map((task) => (
-        <JewelCard key={task.id} task={task} onAdvance={onAdvance} onEdit={onEdit} onDelete={onDelete} />
+        <JewelCard key={task.id} task={task} onToggle={onToggle} onAdvance={onAdvance} onEdit={onEdit} onDelete={onDelete} />
       ))}
     </ul>
   );
