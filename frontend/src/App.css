@@ -865,3 +865,14 @@ select.field {
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.08);
 }
+
+/* Etapa 7: formular validat, buton dezactivat, câmp marcat */
+.item-form .error { grid-column: 1 / -1; }
+.item-form input[aria-invalid="true"],
+.item-form select[aria-invalid="true"] { border-color: var(--late); }
+.item-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}

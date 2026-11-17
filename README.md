@@ -49,8 +49,16 @@ and the counters in the header follow automatically. A button in the
 header switches between light and dark mode. Changes are lost on refresh,
 which is what stage 6 and stage 10 fix.
 ## Stage 6: data from a mock API
-The list is served by json-server from db.json. The app fetches it on load
+The list is served by json-server from `db.json`. The app fetches it on load
 and shows a loading state and an error state.
+
+    npm run api   # terminal 1, http://localhost:3001
+    npm run dev   # terminal 2, http://localhost:5173
+
+## Stage 7: form and validation
+Orders can be added from the page. The form is controlled and validated,
+and every change (add, toggle, delete) goes to the API before it shows up
+in the list.
 
 ## Status
 - [x] Stage 1: static mockup
@@ -59,7 +67,8 @@ and shows a loading state and an error state.
 - [x] Stage 4: components rendered from data
 - [x] Stage 5: local state and events
 - [x] Stage 6: loading data from a mock API
-- [ ] Stage 7: form and validation
+- [x] Stage 7: form and validation
+- [ ] Stage 8: routing and detail page
 
 ## Verification checklist
 
@@ -130,3 +139,16 @@ and shows a loading state and an error state.
 | S6-R5 | fetch only in api.js, URL from env | [frontend/src/api.js](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/src/api.js), [frontend/.env.example](https://github.com/anelisasimon/Jewel_Orders/blob/main/frontend/.env.example) | search for fetch |
 | S6-R6 | README Stage 6 section + AI log | README.md, [ai-log/etapa-06.md](https://github.com/anelisasimon/Jewel_Orders/blob/main/ai-log/etapa-06.md) | read |
 | S6-R7 | commit "Stage 6" pushed | [Commit Stage 6](https://github.com/anelisasimon/Jewel_Orders/commits/main) | commit history |
+
+## Verification table, Stage 7
+
+| ID | Requirement | Where (permalink) | How to check |
+|---|---|---|---|
+| S7-R1 | controlled form: value + onChange on every field | [OrderForm.jsx#L67-L143](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/OrderForm.jsx#L67-L143) | read |
+| S7-R2 | empty title shows an error, nothing is sent | [OrderForm.jsx#L34-L46](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/OrderForm.jsx#L34-L46) (valideaza) | submit empty, watch Network |
+| S7-R3 | added item shows in the list and survives refresh | [App.jsx#L66-L71](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/App.jsx#L66-L71) (handleAdd), [api.js#L22-L24](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/api.js#L22-L24) | add, refresh |
+| S7-R4 | toggle and delete survive refresh | [App.jsx#L82-L93](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/App.jsx#L82-L93), [App.jsx#L108-L129](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/App.jsx#L108-L129) | toggle/delete, refresh |
+| S7-R5 | button disabled while sending, form cleared only on success | [OrderForm.jsx#L48-L64](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/OrderForm.jsx#L48-L64), [OrderForm.jsx#L147](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/OrderForm.jsx#L147) | --delay 3000; stop API and submit |
+| S7-R6 | tw.json and the data-testid attributes from table 7.3 | [tw.json](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/tw.json), [JewelCard.jsx#L17-L55](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/JewelCard.jsx#L17-L55), [JewelList.jsx#L7](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/JewelList.jsx#L7) | querySelectorAll in the console |
+| S7-R7 | README Stage 7 section + AI log | [README.md](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/README.md), [ai-log/etapa-07.md](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/ai-log/etapa-07.md) | read |
+| S7-R8 | commit "Stage 7" pushed | link to the commit | commit history |

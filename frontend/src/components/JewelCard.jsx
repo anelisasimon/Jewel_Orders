@@ -14,16 +14,16 @@ export default function JewelCard({ task, onToggle, onAdvance, onEdit, onDelete 
       : `Treci la: ${ETAPE[task.etapa + 1]}`;
 
   return (
-    <li className={task.gata ? "item-card done" : "item-card"}>
+    <li className={task.gata ? "item-card done" : "item-card"} data-testid="item" data-id={task.id}>
       <div className="item-icon">
         <JewelIcon tip={task.tip} />
       </div>
 
       <div className="item-main">
         <label className="task-main">
-          <input type="checkbox" checked={task.gata} onChange={() => onToggle(task.id)} />
+          <input type="checkbox" checked={task.gata} onChange={() => onToggle(task.id)} data-testid="item-toggle" />
           <div>
-            <h3>{task.titlu}</h3>
+            <h3 data-testid="item-title">{task.titlu}</h3>
             <div className="item-meta">
               <span className={`badge badge-${task.prioritate}`}>{ETICHETE_MATERIAL[task.prioritate] || task.prioritate}</span>
               {task.client && <span className="meta-item">Client: {task.client}</span>}
@@ -52,7 +52,7 @@ export default function JewelCard({ task, onToggle, onAdvance, onEdit, onDelete 
           <button type="button" className="icon-btn" onClick={() => onEdit(task)} title="Editează comanda" aria-label={`Editează ${task.titlu}`}>
             <svg {...svg}><path d="M4 20h4L19 9l-4-4L4 16z" /><path d="m13.5 6.5 4 4" /></svg>
           </button>
-          <button type="button" className="icon-btn icon-btn-danger" onClick={() => onDelete(task.id)} title="Șterge comanda" aria-label={`Șterge ${task.titlu}`}>
+          <button type="button" className="icon-btn icon-btn-danger" onClick={() => onDelete(task.id)} title="Șterge comanda" aria-label={`Șterge ${task.titlu}`} data-testid="item-delete">
             <svg {...svg}><path d="M4 7h16" /><path d="M9 7V4h6v3" /><path d="M6 7l1 13h10l1-13" /></svg>
           </button>
         </div>

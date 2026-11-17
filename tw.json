@@ -1,0 +1,6 @@
+{
+  "resource": "comenzi",
+  "title": "titlu",
+  "done": "gata",
+  "sample": { "tip": "inel", "prioritate": "aur-galben", "client": "Test Client" }
+}

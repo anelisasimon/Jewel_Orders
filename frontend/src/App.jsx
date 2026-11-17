@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import JewelList from "./components/JewelList.jsx";
 import OrderForm from "./components/OrderForm.jsx";
-import { fetchComenzi } from "./api.js";
+import { createComanda, deleteComanda, fetchComenzi, updateComanda } from "./api.js";
 import { ETAPE, lei } from "./utils.js";
 
 const FILTRE = [
@@ -50,7 +50,7 @@ export default function App() {
         const data = await fetchComenzi();
         if (!ignore) setTaskuri(data);
       } catch (err) {
-        if (!ignore) setError(err.message);
+        if (!ignore) setError(`Nu am putut încărca datele: ${err.message}. Rulează npm run api?`);
       } finally {
         if (!ignore) setLoading(false);
       }
@@ -61,39 +61,71 @@ export default function App() {
     };
   }, []);
 
-  // Actualizări imutabile: listă nouă, obiect nou pentru elementul schimbat
-  function handleToggle(id) {
-    const c = taskuri.find((t) => t.id === id);
-    setTaskuri((prev) => prev.map((t) => (t.id === id ? { ...t, gata: !t.gata } : t)));
-    if (c) showToast(c.gata ? "Comanda a fost readusă în lucru." : "Comanda a fost marcată ca livrată.");
-  }
-
-  function handleDelete(id) {
-    const index = taskuri.findIndex((t) => t.id === id);
-    if (index < 0) return;
-    const comanda = taskuri[index];
-    setTaskuri((prev) => prev.filter((t) => t.id !== id));
-    showToast("Comanda a fost ștearsă.", () =>
-      setTaskuri((prev) => [...prev.slice(0, index), comanda, ...prev.slice(index)])
-    );
-  }
-
-  function handleAdd(date) {
-    setTaskuri((prev) => [...prev, { ...date, id: Date.now(), gata: false }]);
+  // Întâi serverul, apoi state-ul: pe ecran ajunge doar ce s-a salvat.
+  // handleAdd și handleSave nu prind eroarea: o lasă să ajungă în formular.
+  async function handleAdd(date) {
+    const creat = await createComanda({ ...date, gata: false }); // serverul întoarce comanda cu id
+    setTaskuri((prev) => [...prev, creat]);
+    setError(null);
     showToast("Comanda a fost înregistrată.");
   }
 
-  function handleAdvance(id) {
-    const c = taskuri.find((t) => t.id === id);
-    if (!c || c.gata || c.etapa >= ETAPE.length - 1) return;
-    setTaskuri((prev) => prev.map((t) => (t.id === id ? { ...t, etapa: t.etapa + 1 } : t)));
-    showToast(`Etapa: ${ETAPE[c.etapa + 1]}.`);
-  }
-
-  function handleSave(date) {
-    setTaskuri((prev) => prev.map((t) => (t.id === date.id ? date : t)));
+  async function handleSave(date) {
+    const { id, ...changes } = date;
+    const actualizat = await updateComanda(id, changes);
+    setTaskuri((prev) => prev.map((t) => (t.id === id ? actualizat : t)));
+    setError(null);
     setEditata(null);
     showToast("Modificările au fost salvate.");
+  }
+
+  async function handleToggle(id) {
+    const c = taskuri.find((t) => t.id === id);
+    if (!c) return;
+    try {
+      const actualizat = await updateComanda(id, { gata: !c.gata });
+      setTaskuri((prev) => prev.map((t) => (t.id === id ? actualizat : t)));
+      setError(null);
+      showToast(c.gata ? "Comanda a fost readusă în lucru." : "Comanda a fost marcată ca livrată.");
+    } catch (err) {
+      setError(`Nu am putut salva modificarea: ${err.message}`);
+    }
+  }
+
+  async function handleAdvance(id) {
+    const c = taskuri.find((t) => t.id === id);
+    if (!c || c.gata || c.etapa >= ETAPE.length - 1) return;
+    try {
+      const actualizat = await updateComanda(id, { etapa: c.etapa + 1 });
+      setTaskuri((prev) => prev.map((t) => (t.id === id ? actualizat : t)));
+      setError(null);
+      showToast(`Etapa: ${ETAPE[c.etapa + 1]}.`);
+    } catch (err) {
+      setError(`Nu am putut salva modificarea: ${err.message}`);
+    }
+  }
+
+  async function handleDelete(id) {
+    const comanda = taskuri.find((t) => t.id === id);
+    if (!comanda) return;
+    try {
+      await deleteComanda(id);
+      setTaskuri((prev) => prev.filter((t) => t.id !== id));
+      setError(null);
+      showToast("Comanda a fost ștearsă.", async () => {
+        // Anularea recreează comanda pe server (primește un id nou) și o pune la final
+        const fara = { ...comanda };
+        delete fara.id;
+        try {
+          const recreata = await createComanda(fara);
+          setTaskuri((prev) => [...prev, recreata]);
+        } catch (err) {
+          setError(`Nu am putut restaura comanda: ${err.message}`);
+        }
+      });
+    } catch (err) {
+      setError(`Nu am putut șterge comanda: ${err.message}`);
+    }
   }
 
   // Comutarea temei: state-ul pentru buton, atributul data-theme pentru CSS
@@ -148,13 +180,17 @@ export default function App() {
 
         <section className="panel">
           <h2>Comenzile mele</h2>
-          {loading && <p className="info">Se încarcă comenzile...</p>}
-          {error && (
-            <p className="error">
-              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+          {loading && (
+            <p className="info" data-testid="loading">
+              Se încarcă comenzile...
             </p>
           )}
-          {!loading && !error && (
+          {error && (
+            <p className="error" data-testid="error">
+              {error}
+            </p>
+          )}
+          {!loading && !(error && taskuri.length === 0) && (
             <>
               <div className="filters" role="group" aria-label="Filtrare comenzi">
                 {FILTRE.map((f) => (
