@@ -1,0 +1,9 @@
+.back {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  color: var(--gold-accent);
+  text-decoration: none;
+}
+.back:hover { text-decoration: underline; text-underline-offset: 4px; }

@@ -1,0 +1,13 @@
+.dialog {
+  margin: auto;
+  width: calc(100% - 32px);
+  max-width: 660px;
+  padding: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  background: var(--panel-bg);
+  color: var(--text-main);
+  box-shadow: 0 30px 80px rgba(40, 28, 10, 0.35);
+}
+.dialog::backdrop { background: rgba(30, 22, 12, 0.5); backdrop-filter: blur(3px); }
+.dialog :global(.panel) { border: none; box-shadow: none; animation: none; background: transparent; }

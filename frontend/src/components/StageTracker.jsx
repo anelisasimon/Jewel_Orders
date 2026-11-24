@@ -1,20 +1,19 @@
 import { ETAPE } from "../utils.js";
-
-// 4 etape de lucru + o ultimă bară, "Livrată", care se umple când comanda e bifată
-const PASI = [...ETAPE, "Livrată"];
+import styles from "./StageTracker.module.css";
 
 export default function StageTracker({ etapa, gata }) {
+  const toate = gata || etapa === ETAPE.length - 1;
   return (
     <div
-      className="stages"
+      className={gata ? `${styles.stages} ${styles.delivered}` : styles.stages}
       role="img"
-      aria-label={gata ? "Comandă livrată" : `Etapa ${etapa + 1} din ${ETAPE.length}: ${ETAPE[etapa]}`}
+      aria-label={`Etapa ${etapa + 1} din ${ETAPE.length}: ${ETAPE[etapa]}`}
     >
-      {PASI.map((nume, i) => (
+      {ETAPE.map((nume, i) => (
         <span
           key={nume}
           title={nume}
-          className={gata || i < etapa ? "stage done" : i === etapa ? "stage current" : "stage"}
+          className={i < etapa || toate ? `${styles.stage} ${styles.done}` : i === etapa ? `${styles.stage} ${styles.current}` : styles.stage}
         />
       ))}
     </div>

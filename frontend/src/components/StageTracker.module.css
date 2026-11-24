@@ -1,0 +1,18 @@
+@keyframes pulse-bar { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+.stages {
+  display: flex;
+  gap: 5px;
+  margin-top: 16px;
+  max-width: 280px;
+}
+.stage {
+  flex: 1;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--border-subtle);
+}
+.done { background: var(--gold-grad); }
+.current { background: var(--gold-grad); animation: pulse-bar 2s ease-in-out infinite; }
+/* comandă livrată: bara devine verde */
+.delivered .done { background: #5b9a6f; }

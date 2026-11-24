@@ -1,0 +1,273 @@
+/* Stiluri globale: fonturi, variabile (cele trei blocuri de temă), elemente de bază și clase comune.
+   Stilurile de componentă stau în fișiere *.module.css, lângă componente. */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@400;500;600&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-soft) transparent;
+}
+
+/* ---------- Variabile: tema luminoasă (implicită) ---------- */
+:root {
+  --bg: #fbf7f1;
+  --panel-bg: #ffffff;
+  --card-bg: #ffffff;
+  --field-bg: #fffdfa;
+  --done-bg: #faf7f3;
+  --text-main: #2d2621;
+  --text-muted: #85786f;
+  --gold-accent: #b8943f;
+  --gold-light: #e6d3a3;
+  --gold-soft: #dfcfad;
+  --border-subtle: #eee5da;
+  --gold-grad: linear-gradient(135deg, #d4b366, #b8943f);
+
+  --glow-1: rgba(230, 211, 163, 0.28);
+  --glow-2: rgba(230, 211, 163, 0.18);
+  --header-from: rgba(245, 236, 220, 0.85);
+  --header-to: rgba(251, 247, 241, 0);
+  --title-ink: #3a2c20;
+  --panel-shadow: 0 20px 50px rgba(120, 95, 60, 0.08);
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  --card-hover-shadow: 0 14px 30px rgba(184, 148, 63, 0.18);
+  --icon-bg: radial-gradient(circle at 30% 25%, #fffaf0, #f6ebd2);
+  --status-bg: #fbf3dc;
+  --status-border: #ecd9a2;
+  --status-text: #7a5a0c;
+  --ok-bg: #edf5ef;
+  --ok-border: #c5dccb;
+  --ok-text: #3f6b4d;
+  --late: #b9544a;
+  --error-bg: #fdf2f8;
+  --error-border: #fbcfe8;
+  --soon: #a8741a;
+  --price-glow: rgba(243, 226, 176, 0.4);
+  --sheen: rgba(255, 244, 214, 0.55);
+  --toast-bg: #2d2621;
+  --toast-text: #f6ecd9;
+  --toast-border: #5c4c2a;
+  --toast-link: #e6d3a3;
+  --noise-blend: multiply;
+
+  --font-title: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Jost", "Segoe UI", system-ui, sans-serif;
+
+  --badge-aur-galben-bg: linear-gradient(135deg, #fdf3d4, #f6e2a0);
+  --badge-aur-galben-border: #d4a743;
+  --badge-aur-galben-text: #7a5a0c;
+  --badge-aur-alb-bg: linear-gradient(135deg, #f8fafc, #e3e9ef);
+  --badge-aur-alb-border: #9bb0c1;
+  --badge-aur-alb-text: #3d566b;
+  --badge-argint-bg: linear-gradient(135deg, #f7f8f9, #e1e5e8);
+  --badge-argint-border: #a8b5c0;
+  --badge-argint-text: #4d5963;
+  --badge-platina-bg: linear-gradient(135deg, #faf6fc, #e9deef);
+  --badge-platina-border: #c4b5d4;
+  --badge-platina-text: #69527e;
+}
+
+/* Tema sistemului, dacă utilizatorul nu a ales explicit tema luminoasă */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14121d;
+    --panel-bg: #1e1b2e;
+    --card-bg: #251f36;
+    --field-bg: #2a2342;
+    --done-bg: #1a1726;
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
+    --gold-accent: #d9b867;
+    --gold-light: #6b5830;
+    --gold-soft: #5c4c2a;
+    --border-subtle: #352f4d;
+    --glow-1: rgba(217, 184, 103, 0.1);
+    --glow-2: rgba(217, 184, 103, 0.06);
+    --header-from: rgba(64, 49, 27, 0.55);
+    --header-to: rgba(20, 18, 29, 0);
+    --title-ink: #f1e8dc;
+    --panel-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    --card-hover-shadow: 0 14px 30px rgba(217, 184, 103, 0.14);
+    --icon-bg: radial-gradient(circle at 30% 25%, #3a2f1c, #2a2216);
+    --status-bg: #3a2f14;
+    --status-border: #5c4c2a;
+    --status-text: #f0d889;
+    --ok-bg: #1f3027;
+    --ok-border: #345a43;
+    --ok-text: #9fd4b0;
+    --late: #e58a80;
+    --error-bg: #3b1d2e;
+    --error-border: #6b2a4a;
+    --soon: #e2b25a;
+    --price-glow: rgba(217, 184, 103, 0.14);
+    --sheen: rgba(217, 184, 103, 0.14);
+    --toast-bg: #f1e8dc;
+    --toast-text: #2d2621;
+    --toast-border: #d9b867;
+    --toast-link: #8c6812;
+    --noise-blend: screen;
+    --badge-aur-galben-bg: linear-gradient(135deg, #4a3a14, #3a2d0f);
+    --badge-aur-galben-text: #f0d889;
+    --badge-aur-alb-bg: linear-gradient(135deg, #2e3841, #252d35);
+    --badge-aur-alb-text: #c9d7e3;
+    --badge-argint-bg: linear-gradient(135deg, #34393d, #2a2e31);
+    --badge-argint-text: #d3dbe0;
+    --badge-platina-bg: linear-gradient(135deg, #3b3146, #2f2738);
+    --badge-platina-text: #dccbed;
+    color-scheme: dark;
+  }
+}
+
+/* Etapa 5: tema aleasă din buton are prioritate față de cea a sistemului */
+:root[data-theme="dark"] {
+  --bg: #14121d;
+  --panel-bg: #1e1b2e;
+  --card-bg: #251f36;
+  --field-bg: #2a2342;
+  --done-bg: #1a1726;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --gold-accent: #d9b867;
+  --gold-light: #6b5830;
+  --gold-soft: #5c4c2a;
+  --border-subtle: #352f4d;
+  --glow-1: rgba(217, 184, 103, 0.1);
+  --glow-2: rgba(217, 184, 103, 0.06);
+  --header-from: rgba(64, 49, 27, 0.55);
+  --header-to: rgba(20, 18, 29, 0);
+  --title-ink: #f1e8dc;
+  --panel-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --card-hover-shadow: 0 14px 30px rgba(217, 184, 103, 0.14);
+  --icon-bg: radial-gradient(circle at 30% 25%, #3a2f1c, #2a2216);
+  --status-bg: #3a2f14;
+  --status-border: #5c4c2a;
+  --status-text: #f0d889;
+  --ok-bg: #1f3027;
+  --ok-border: #345a43;
+  --ok-text: #9fd4b0;
+  --late: #e58a80;
+  --error-bg: #3b1d2e;
+  --error-border: #6b2a4a;
+  --soon: #e2b25a;
+  --price-glow: rgba(217, 184, 103, 0.14);
+  --sheen: rgba(217, 184, 103, 0.14);
+  --toast-bg: #f1e8dc;
+  --toast-text: #2d2621;
+  --toast-border: #d9b867;
+  --toast-link: #8c6812;
+  --noise-blend: screen;
+  --badge-aur-galben-bg: linear-gradient(135deg, #4a3a14, #3a2d0f);
+  --badge-aur-galben-text: #f0d889;
+  --badge-aur-alb-bg: linear-gradient(135deg, #2e3841, #252d35);
+  --badge-aur-alb-text: #c9d7e3;
+  --badge-argint-bg: linear-gradient(135deg, #34393d, #2a2e31);
+  --badge-argint-text: #d3dbe0;
+  --badge-platina-bg: linear-gradient(135deg, #3b3146, #2f2738);
+  --badge-platina-text: #dccbed;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  background:
+    radial-gradient(circle at 15% 0%, var(--glow-1), transparent 45%),
+    radial-gradient(circle at 90% 30%, var(--glow-2), transparent 40%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: #e6d3a3; color: #2d2621; }
+::-webkit-scrollbar { width: 9px; }
+::-webkit-scrollbar-thumb { background: var(--gold-soft); border-radius: 9px; }
+
+/* textură fină de hârtie */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: var(--noise-blend);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.27 0 0 0 0 0.16 0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ---------- Clase comune ---------- */
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: var(--panel-shadow);
+  animation: fade-up 0.7s 0.15s ease both;
+}
+
+.panel h2 {
+  position: relative;
+  font-family: var(--font-title);
+  font-size: 1.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text-main);
+  padding-bottom: 18px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.panel h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-accent), transparent);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+.badge-aur-galben { background: var(--badge-aur-galben-bg); border: 1px solid var(--badge-aur-galben-border); color: var(--badge-aur-galben-text); }
+.badge-aur-alb { background: var(--badge-aur-alb-bg); border: 1px solid var(--badge-aur-alb-border); color: var(--badge-aur-alb-text); }
+.badge-argint { background: var(--badge-argint-bg); border: 1px solid var(--badge-argint-border); color: var(--badge-argint-text); }
+.badge-platina { background: var(--badge-platina-bg); border: 1px solid var(--badge-platina-border); color: var(--badge-platina-text); }
+
+/* Etapa 6: stări de încărcare și de eroare */
+.info { color: var(--text-muted); font-style: italic; padding: 8px 0; }
+
+.error {
+  color: var(--late);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.error code {
+  font-size: 0.9em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+@media (max-width: 560px) {
+  .panel { padding: 22px 18px; }
+}

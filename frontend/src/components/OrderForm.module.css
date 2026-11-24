@@ -1,0 +1,206 @@
+@keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ---------- Formular ---------- */
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 20px;
+  align-items: end;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.full,
+.actions,
+.priceBox { grid-column: 1 / -1; }
+
+.form input,
+.form select {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--text-main);
+  background-color: var(--field-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 12px 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form input::placeholder { color: var(--text-muted); opacity: 0.7; }
+
+.form input:focus,
+.form select:focus {
+  outline: none;
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 4px rgba(184, 148, 63, 0.15);
+}
+
+.form select {
+  appearance: none;
+  padding-right: 38px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23b8943f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M1 1.5l5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+.form select:invalid { color: var(--text-muted); }
+.form select option { color: #2d2621; }
+
+.priceBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding: 16px 22px;
+  border: 1px solid var(--gold-soft);
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--price-glow), transparent);
+  animation: fade-up 0.4s ease both;
+}
+.priceBox .priceLabel {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.priceBox small {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.priceBox strong {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--gold-accent);
+}
+
+.actions { display: flex; gap: 12px; }
+.actions button { flex: 1; }
+
+.form button {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: var(--gold-grad);
+  border: none;
+  border-radius: 10px;
+  padding: 14px 22px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(184, 148, 63, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(184, 148, 63, 0.4);
+  filter: brightness(1.05);
+}
+.form .ghost {
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  box-shadow: none;
+}
+.form .ghost:hover {
+  color: var(--gold-accent);
+  border-color: var(--gold-soft);
+  box-shadow: none;
+}
+/* Etapa 7: formular validat, buton dezactivat, câmp marcat */
+.formError { grid-column: 1 / -1; }
+.form input[aria-invalid="true"],
+.form select[aria-invalid="true"] { border-color: var(--late); }
+.form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+@media (max-width: 560px) {
+  .form { grid-template-columns: 1fr; }
+  .actions { flex-direction: column-reverse; }
+}
+
+/* ---------- Descriere, primirea comenzii ---------- */
+.form textarea {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  letter-spacing: normal;
+  text-transform: none;
+  font-weight: 400;
+  resize: vertical;
+  color: var(--text-main);
+  background-color: var(--field-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 12px 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form textarea::placeholder { color: var(--text-muted); opacity: 0.7; }
+.form textarea:focus {
+  outline: none;
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 4px rgba(184, 148, 63, 0.15);
+}
+
+.delivery {
+  grid-column: 1 / -1;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 14px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.delivery legend {
+  padding: 0 8px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.options { display: flex; flex-wrap: wrap; gap: 12px; }
+.form .option {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 18px;
+  font-size: 0.92rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--text-main);
+  background: var(--field-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.form .option:has(input:checked) { border-color: var(--gold-accent); box-shadow: 0 0 0 3px rgba(184, 148, 63, 0.15); }
+.form .option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  margin: 0;
+  accent-color: var(--gold-accent);
+  cursor: pointer;
+}
+.addr { display: flex; flex-direction: column; gap: 8px; }

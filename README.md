@@ -60,6 +60,14 @@ Orders can be added from the page. The form is controlled and validated,
 and every change (add, toggle, delete) goes to the API before it shows up
 in the list.
 
+## Stage 8: routing and detail page
+Three pages behind React Router: the list, a detail page at `/comenzi/:id`,
+and an about page, plus a 404 page. Component styles moved to CSS Modules.
+
+Extra: new orders can be picked from a product catalog (with images) or
+described as a custom piece, and the customer chooses store pickup or
+delivery to an address.
+
 ## Status
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
@@ -68,7 +76,8 @@ in the list.
 - [x] Stage 5: local state and events
 - [x] Stage 6: loading data from a mock API
 - [x] Stage 7: form and validation
-- [ ] Stage 8: routing and detail page
+- [x] Stage 8: routing and detail page
+- [ ] Stage 9: own backend with Express
 
 ## Verification checklist
 
@@ -152,3 +161,16 @@ in the list.
 | S7-R6 | tw.json and the data-testid attributes from table 7.3 | [tw.json](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/tw.json), [JewelCard.jsx#L17-L55](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/JewelCard.jsx#L17-L55), [JewelList.jsx#L7](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/JewelList.jsx#L7) | querySelectorAll in the console |
 | S7-R7 | README Stage 7 section + AI log | [README.md](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/README.md), [ai-log/etapa-07.md](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/ai-log/etapa-07.md) | read |
 | S7-R8 | commit "Stage 7" pushed | link to the commit | commit history |
+
+## Verification table, Stage 8
+
+| ID | Requirement | Where (permalink) | How to check |
+|---|---|---|---|
+| S8-R1 | header navigation changes page without reload | [App.jsx#L12-L19](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/App.jsx#L12-L19), [Layout.jsx#L46-L57](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/Layout.jsx#L46-L57) | click links, watch Network |
+| S8-R2 | click on an item opens its detail page | [JewelCard.jsx#L37](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/JewelCard.jsx#L37), [ComandaDetaliuPage.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/pages/ComandaDetaliuPage.jsx) | click a title |
+| S8-R3 | refresh on the detail URL works; missing id shows an error | [ComandaDetaliuPage.jsx#L19-L58](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/pages/ComandaDetaliuPage.jsx#L19-L58), [api.js#L37-L39](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/api.js#L37-L39) | refresh /comenzi/1, open /comenzi/999 |
+| S8-R4 | unknown URL shows the app 404 page | [App.jsx#L17](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/App.jsx#L17) (path="*"), [NotFoundPage.jsx](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/pages/NotFoundPage.jsx) | open /ceva |
+| S8-R5 | each component has its .module.css; index.css only shared styles | [src/components](https://github.com/anelisasimon/Jewel_Orders/tree/COMMIT/frontend/src/components), [src/pages](https://github.com/anelisasimon/Jewel_Orders/tree/COMMIT/frontend/src/pages), [index.css](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/index.css) | read |
+| S8-R6 | data-testid attributes from tables 7.3 and 8.2; detail route /<resource>/:id | [Layout.jsx#L46](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/Layout.jsx#L46), [JewelCard.jsx#L37](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/components/JewelCard.jsx#L37), [ComandaDetaliuPage.jsx#L64-L74](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/pages/ComandaDetaliuPage.jsx#L64-L74), [NotFoundPage.jsx#L6](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/frontend/src/pages/NotFoundPage.jsx#L6), [tw.json](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/tw.json) | querySelector in the console |
+| S8-R7 | README Stage 8 section + AI log | [README.md](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/README.md), [ai-log/etapa-08.md](https://github.com/anelisasimon/Jewel_Orders/blob/COMMIT/ai-log/etapa-08.md) | read |
+| S8-R8 | commit "Stage 8" pushed | link to the commit | commit history |

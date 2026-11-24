@@ -1,0 +1,7 @@
+.about p { line-height: 1.7; color: var(--text-main); }
+.stack {
+  margin-top: 18px;
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
